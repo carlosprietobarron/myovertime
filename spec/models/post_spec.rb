@@ -1,17 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  before do
-    @post = Post.create(date: Date.today, rationale: "something")
-  end
+  describe "Creation" do
+  	before do
+      user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", fisrt_name: "Jon", last_name: "Snow")
+          login_as(user, :scope => :user)
+  		@post = Post.create(date: Date.today, rationale: "Anything", user_id: user.id)
+  	end
 
-  it "creates valid post" do
-    expect(@post).to be_valid
-  end
+  	it 'can be created' do	
+  		expect(@post).to be_valid
+  	end
 
-  it "should have date and raionale" do
-    @post.date = nil
-    @post.rationale = nil
-    expect(@post).not_to be_valid
+  	it 'cannot be created without a date and rationale' do
+  		@post.date = nil
+  		@post.rationale = nil
+  		expect(@post).to_not be_valid
+  	end
   end
 end

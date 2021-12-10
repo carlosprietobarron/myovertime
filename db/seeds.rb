@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create(email: 'some@test.com', password: '1234567', fisrt_name: "test", last_name: "lasttest")
+
 100.times do |post|
-    Post.create(date: Date.today-rand(10000), rationale: "#{post} Lorem somthing")
+    Post.create(date: Date.today-rand(10000), rationale: "#{post} Lorem somthing", user_id: 1)
     puts post
 end
 

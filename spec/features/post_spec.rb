@@ -15,6 +15,8 @@ describe "navigate" do
 
     describe "create new post" do
         before do
+          user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", fisrt_name: "Jon", last_name: "Snow")
+          login_as(user, :scope => :user)
           visit new_post_path
         end
 
